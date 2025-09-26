@@ -205,6 +205,8 @@ def main():
         #up, down, center = lane_detect.add_vertical_line_near(binary_image)
         cv2.line(img, up, down, (255, 255, 255), 10)
         '''
+        msg = bridge.cv2_to_imgmsg(result_image, encoding="bgr8")
+        image_pub.publish(msg)
         cv2.imshow('image', img)
         key = cv2.waitKey(1)
         if key == ord('q') or key == 27:  # press Q or Esc to quit
@@ -219,6 +221,7 @@ if __name__ == '__main__':
     rclpy.init()
     node = rclpy.create_node('lane_detect')
     lane_detect = LaneDetector('yellow')
+    image_pub = node.create_publisher(Image, '/lane_detect/debug_image', 10)
     node.create_subscription(Image, '/ascamera/camera_publisher/rgb0/image', image_callback, 1)
     threading.Thread(target=main, daemon=True).start()
     rclpy.spin(node)
