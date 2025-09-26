@@ -8,3 +8,6 @@ final_dataset_split
 real_final_dataset
 *.ipynb
 instances_count.py
+**/build/
+**/install/
+**/log/
