@@ -42,6 +42,7 @@ setup(
             'self_driving = example.self_driving.self_driving:main',
             'yolov5_node = example.yolov5_detect.yolov5_node:main',
             'lane_detect = example.self_driving.lane_detect:main',
+            'lane_detect_debug = example.self_driving.lane_detect_debug:main',
 
             'cross_bridge = example.rgbd_function.cross_bridge_node:main',
             'prevent_falling = example.rgbd_function.prevent_falling_node:main',

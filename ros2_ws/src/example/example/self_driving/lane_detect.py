@@ -102,7 +102,7 @@ class LaneDetector(object):
         roi_h_max = h
         roi = image[roi_h_min:roi_h_max, roi_w_min:roi_w_max]
         flip_binary = cv2.flip(roi, -1)  # flip the image horizontally and vertically
-        #cv2.imshow('1', flip_binary)
+        # cv2.imshow('1', flip_binary)
         (x_0, y_0) = cv2.minMaxLoc(flip_binary)[-1]  # extract the coordinates of the top-left point with a value of 255
         down_p = (roi_w_max - x_0, roi_h_max - y_0)
 
@@ -205,8 +205,7 @@ def main():
         #up, down, center = lane_detect.add_vertical_line_near(binary_image)
         cv2.line(img, up, down, (255, 255, 255), 10)
         '''
-        msg = bridge.cv2_to_imgmsg(result_image, encoding="bgr8")
-        image_pub.publish(msg)
+
         cv2.imshow('image', img)
         key = cv2.waitKey(1)
         if key == ord('q') or key == 27:  # press Q or Esc to quit
@@ -221,7 +220,6 @@ if __name__ == '__main__':
     rclpy.init()
     node = rclpy.create_node('lane_detect')
     lane_detect = LaneDetector('yellow')
-    image_pub = node.create_publisher(Image, '/lane_detect/debug_image', 10)
     node.create_subscription(Image, '/ascamera/camera_publisher/rgb0/image', image_callback, 1)
     threading.Thread(target=main, daemon=True).start()
     rclpy.spin(node)
