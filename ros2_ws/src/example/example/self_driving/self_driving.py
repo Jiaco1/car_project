@@ -38,7 +38,7 @@ class SelfDrivingNode(Node):
 
         self.fps = fps.FPS()  
         self.image_queue = queue.Queue(maxsize=2)
-        self.classes = ['go', 'right', 'park', 'red', 'green', 'crosswalk']
+        self.classes = ['straight', 'turn', 'parking', 'red', 'green', 'yellow', 'crosswalk']
         self.display = True
         self.bridge = CvBridge()
         self.lock = threading.RLock()
