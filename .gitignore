@@ -2,7 +2,7 @@
 */__pycache__/*
 .vscode/
 .pytest_cache/
-*.pt/
+**/*.pt/
 .augment_test.ipynb
 final_dataset_split
 real_final_dataset
